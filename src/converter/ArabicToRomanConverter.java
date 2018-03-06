@@ -19,4 +19,19 @@ public class ArabicToRomanConverter implements NumeralConverter {
             return e.getMessage();
         }
     }
+    
+    private static int getValidArabic(String value) throws Exception {
+        int arabic = Integer.parseInt(value);
+        if(arabic < MIN_VALUE || arabic  > MAX_VALUE)
+            throw new IllegalNumberException();
+        return arabic;
+    }
+    
+    private static String getRoman(int value) {
+        int closestValue = ROMANS.ceilingKey(value);
+        if (closestValue == value)
+            return ROMANS.get(value);
+        int residualValue = value - closestValue;
+        return ROMANS.get(closestValue) + getRoman(residualValue);
+    }   
 }
