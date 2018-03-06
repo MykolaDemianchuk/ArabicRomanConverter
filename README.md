@@ -1,2 +1,2 @@
 # ArabicRomanConverter
-Application converts Arabic to Roman and Roman to Arabic numerals in a range 1-3999.
+Application converts Roman to Arabic and Arabic to Roman numerals in a range 1-3999.
