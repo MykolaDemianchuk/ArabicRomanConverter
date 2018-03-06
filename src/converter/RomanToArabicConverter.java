@@ -1,28 +1,22 @@
 package converter;
 
+import exceptions.*;
+import static util.ConverterUtil.*;
 
-import java.util.Map;
-import static util.NumeralUtil.*;
-
-public class RomanToArabicConverter implements NumeralConverter{
+public class RomanToArabicConverter implements NumeralConverter {
 
     @Override
-    public String convert(String romanNumeral) {
-        romanNumeral = romanNumeral.toUpperCase();
-        int arabicNumeral = 0;
-        
-        for(Map.Entry<String, Integer> entry : VALUE_OF.entrySet()){
-            for(int i = 0; i < 3; i++)
-                if(romanNumeral.startsWith(entry.getKey())){
-                    arabicNumeral += entry.getValue();
-                    romanNumeral = romanNumeral.substring(entry.getKey().length());
-                }   
+    public String convert(String value) {
+        try {
+            value = value.trim();
+            if (value.isEmpty()) {
+                throw new EmptyInputException();
+            }
+            String roman = getValidRoman(value);
+            String arabic = getArabic(roman);
+            return arabic;
+        } catch (Exception e) {
+            return e.getMessage();
         }
-        
-        if(! romanNumeral.isEmpty())
-            return "Invalid numeral";
-        
-        else
-            return String.valueOf(arabicNumeral);
     }
 }

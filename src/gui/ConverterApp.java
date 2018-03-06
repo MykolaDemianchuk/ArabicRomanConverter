@@ -1,14 +1,22 @@
 package gui;
 
-import com.sun.glass.events.KeyEvent;
 import converter.*;
+import java.awt.event.KeyEvent;
 
-public class MainWindow extends javax.swing.JFrame {
+import static util.ConverterUtil.*;
 
-    public MainWindow() {
+public class ConverterApp extends javax.swing.JFrame {
+
+    private NumeralConverter ARConverter = new ArabicToRomanConverter();
+    private NumeralConverter RAConverter = new RomanToArabicConverter();
+
+    public ConverterApp() {
         initComponents();
         setLocationRelativeTo(null);
-        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new ConverterApp().setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -24,6 +32,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Converter");
 
         arabicTextField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         arabicTextField.setToolTipText("");
@@ -40,6 +49,12 @@ public class MainWindow extends javax.swing.JFrame {
         arabicTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 arabicTextFieldKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                arabicTextFieldKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                arabicTextFieldKeyTyped(evt);
             }
         });
 
@@ -69,6 +84,12 @@ public class MainWindow extends javax.swing.JFrame {
         romanTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 romanTextFieldKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                romanTextFieldKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                romanTextFieldKeyTyped(evt);
             }
         });
 
@@ -132,37 +153,81 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void arabicTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arabicTextFieldActionPerformed
-
     }//GEN-LAST:event_arabicTextFieldActionPerformed
 
     private void romanTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_romanTextFieldActionPerformed
-
     }//GEN-LAST:event_romanTextFieldActionPerformed
 
     private void arabicTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_arabicTextFieldKeyPressed
-        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
-            NumeralConverter aConverter = new ArabicToRomanConverter();
-            String result = aConverter.convert(arabicTextField.getText());
-            romanTextField.setText(result);
-        }
     }//GEN-LAST:event_arabicTextFieldKeyPressed
 
     private void romanTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_romanTextFieldKeyPressed
-        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
-            NumeralConverter rConverter = new RomanToArabicConverter();
-            String result = rConverter.convert(romanTextField.getText());
-            arabicTextField.setText(result);
-        }        
     }//GEN-LAST:event_romanTextFieldKeyPressed
 
     private void arabicTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arabicTextFieldMouseClicked
-        arabicTextField.setText("");       
+        arabicTextField.setText("");
     }//GEN-LAST:event_arabicTextFieldMouseClicked
 
     private void romanTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_romanTextFieldMouseClicked
         romanTextField.setText("");
     }//GEN-LAST:event_romanTextFieldMouseClicked
-   
+
+    private void arabicTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_arabicTextFieldKeyTyped
+    }//GEN-LAST:event_arabicTextFieldKeyTyped
+
+    private void romanTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_romanTextFieldKeyTyped
+    }//GEN-LAST:event_romanTextFieldKeyTyped
+
+    private void romanTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_romanTextFieldKeyReleased
+        String text = romanTextField.getText().toUpperCase();            
+        if (! text.isEmpty()) {
+            if (isEnter(evt)) {
+                String result = RAConverter.convert(text);
+                arabicTextField.setText(result);
+            } 
+//            else if (!isRoman(evt) && !isBackspace(evt) ||
+//                     !isValidRoman(text))
+//                removeLastCharacter(romanTextField);
+        }
+    }//GEN-LAST:event_romanTextFieldKeyReleased
+
+    private void arabicTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_arabicTextFieldKeyReleased
+        String text = arabicTextField.getText();            
+        if (! text.isEmpty()) {
+            if (isEnter(evt)) {
+                String result = ARConverter.convert(text);
+                romanTextField.setText(result);
+            } 
+//            else if (isNumber(evt) && !isValidArabic(text) || 
+//                    !isNumber(evt) && !isBackspace(evt))
+//                removeLastCharacter(arabicTextField);
+        }
+    }//GEN-LAST:event_arabicTextFieldKeyReleased
+    
+    private boolean isEnter(KeyEvent evt){
+        return evt.getKeyCode() == 10;
+    }
+    
+    private boolean isBackspace(KeyEvent evt){
+        return evt.getKeyCode() == 8;
+    }
+    
+    private boolean isNumber(KeyEvent evt){
+        return (evt.getKeyCode() >= 48 && evt.getKeyCode() <= 57) ||
+                (evt.getKeyCode() >= 96 && evt.getKeyCode() <= 105);
+    }
+    
+    private boolean isRoman(KeyEvent evt){
+        char x = Character.toUpperCase(evt.getKeyChar());
+        String s = String.valueOf(x);
+        return ROMANS.containsValue(s);
+    }
+    
+    private void removeLastCharacter(javax.swing.JTextField jField){
+        String text = jField.getText();  
+        jField.setText(text.substring(0, text.length() - 1));
+    }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel arabicLabel;
     private javax.swing.JTextField arabicTextField;

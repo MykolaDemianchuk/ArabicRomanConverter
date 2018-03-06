@@ -3,15 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumberConverter/src/gui/MainWindow.java</file>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumberConverter/src/converter/ConverterApp.java</file>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumberConverter/src/converter/ArabicToRomanConverter.java</file>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumberConverter/src/converter/RomanToArabicConverter.java</file>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumberConverter/test/numeral/NumeralTest.java</file>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumberConverter/src/util/NumeralUtil.java</file>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumberConverter/test/converter/NumeralConverterTest.java</file>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumberConverter/src/util/IllegalNumeralException.java</file>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumberConverter/src/converter/NumeralConverter.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumeralConverter/test/converter/NumeralConverterTest.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumeralConverter/src/util/ConverterUtil.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumeralConverter/test/converter/ArabicToRomanConverterTest.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumeralConverter/src/converter/RomanToArabicConverter.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumeralConverter/test/converter/RomanToArabicConverterTest.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumeralConverter/src/gui/ConverterApp.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumeralConverter/src/converter/ArabicToRomanConverter.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumeralConverter/src/gui/ConverterUI.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/NumeralConverter/src/converter/NumeralConverter.java</file>
         </group>
     </open-files>
 </project-private>
