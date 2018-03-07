@@ -1,14 +1,16 @@
 package converter;
 
 import exceptions.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import static util.ConverterUtil.*;
 
 public class RomanToArabicConverter implements NumeralConverter {
 
     @Override
     public String convert(String value) throws Exception {
+        value = value.trim();
+        if(value.isEmpty())
+            throw new EmptyInputException();
         String roman = getValidRoman(value);
         String arabic = getArabic(roman);
         return arabic;

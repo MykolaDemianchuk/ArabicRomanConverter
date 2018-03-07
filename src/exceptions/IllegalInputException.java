@@ -1,6 +1,6 @@
 package exceptions;
 
-public class IllegalInputException extends NumberFormatException {
+public class IllegalInputException extends Exception {
 
     public static final String ERR_MSG = "Invalid input";
 
