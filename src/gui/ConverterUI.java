@@ -1,6 +1,7 @@
 package gui;
 
 import converter.*;
+import exceptions.EmptyInputException;
 import java.awt.event.KeyEvent;
 
 public class ConverterUI extends javax.swing.JFrame {
@@ -118,22 +119,29 @@ public class ConverterUI extends javax.swing.JFrame {
     }                   
 
     private void romanTextFieldKeyReleased(java.awt.event.KeyEvent evt) {
-        String text = romanTextField.getText().trim();
-        if (!text.isEmpty()) {
-            if (isEnter(evt)) {
-                String result = RAConverter.convert(text);
-                arabicTextField.setText(result);
-            }
-        }
+        if (isEnter(evt))
+            performAction(romanTextField, arabicTextField, RAConverter);
     }
 
     private void arabicTextFieldKeyReleased(java.awt.event.KeyEvent evt) {
-        String text = arabicTextField.getText().trim();
-        if (!text.isEmpty()) {
-            if (isEnter(evt)) {
-                String result = ARConverter.convert(text);
-                romanTextField.setText(result);
-            }
+        if (isEnter(evt))
+            performAction(arabicTextField, romanTextField, ARConverter);
+    }
+    
+    private void performAction(javax.swing.JTextField from, 
+            javax.swing.JTextField to, NumeralConverter converter){
+        
+        String text = from.getText().trim();
+        try{
+            if (text.isEmpty()) 
+                throw new EmptyInputException();
+            
+            String result = converter.convert(text);
+            to.setText(result);
+            
+        } catch(Exception e) {
+            from.setText(e.getMessage());
+            to.setText("");
         }
     }
 
