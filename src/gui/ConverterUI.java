@@ -1,13 +1,13 @@
 package gui;
 
 import converter.*;
-import exceptions.EmptyInputException;
+import exceptions.*;
 import java.awt.event.KeyEvent;
 
 public class ConverterUI extends javax.swing.JFrame {
 
-    private NumeralConverter ARConverter = new ArabicToRomanConverter();
-    private NumeralConverter RAConverter = new RomanToArabicConverter();
+    private final NumeralConverter ARConverter = new ArabicToRomanConverter();
+    private final NumeralConverter RAConverter = new RomanToArabicConverter();
 
     public ConverterUI() {
         initComponents();
@@ -138,7 +138,6 @@ public class ConverterUI extends javax.swing.JFrame {
             
             String result = converter.convert(text);
             to.setText(result);
-            
         } catch(Exception e) {
             from.setText(e.getMessage());
             to.setText("");
