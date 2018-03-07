@@ -6,24 +6,16 @@ import static util.ConverterUtil.*;
 public class ArabicToRomanConverter implements NumeralConverter {
 
     @Override
-    public String convert(String value) {
-        try {
-            value = value.trim();
-            if (value.isEmpty()) {
-                throw new EmptyInputException();
-            }
-            int arabic = getValidArabic(value);
-            String roman = getRoman(arabic);
-            return roman;
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+    public String convert(String value) throws Exception{
+        int arabic = getValidArabic(value);
+        String roman = getRoman(arabic);
+        return roman;
     }
     
     private static int getValidArabic(String value) throws Exception {
         int arabic = Integer.parseInt(value);
         if(arabic < MIN_VALUE || arabic  > MAX_VALUE)
-            throw new IllegalNumberException();
+            throw new IllegalArabicException();
         return arabic;
     }
     

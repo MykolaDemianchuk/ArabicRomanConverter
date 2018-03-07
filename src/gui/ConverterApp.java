@@ -182,8 +182,8 @@ public class ConverterApp extends javax.swing.JFrame {
         String text = romanTextField.getText().toUpperCase();            
         if (! text.isEmpty()) {
             if (isEnter(evt)) {
-                String result = RAConverter.convert(text);
-                arabicTextField.setText(result);
+               // String result = RAConverter.convert(text);
+               // arabicTextField.setText(result);
             } 
 //            else if (!isRoman(evt) && !isBackspace(evt) ||
 //                     !isValidRoman(text))
@@ -195,8 +195,8 @@ public class ConverterApp extends javax.swing.JFrame {
         String text = arabicTextField.getText();            
         if (! text.isEmpty()) {
             if (isEnter(evt)) {
-                String result = ARConverter.convert(text);
-                romanTextField.setText(result);
+              //  String result = ARConverter.convert(text);
+               // romanTextField.setText(result);
             } 
 //            else if (isNumber(evt) && !isValidArabic(text) || 
 //                    !isNumber(evt) && !isBackspace(evt))

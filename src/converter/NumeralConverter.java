@@ -1,6 +1,5 @@
 package converter;
 
 public interface NumeralConverter {
-
-    String convert(String numeral);
+    String convert(String value) throws Exception;
 }

@@ -1,35 +1,47 @@
 package converter;
 
+import exceptions.*;
 import junit.framework.*;
-import util.ConverterUtil;
 
 public class RomanToArabicConverterTest extends TestCase {
     
-    private NumeralConverter converter;
+    private NumeralConverter RAconverter;
     
     @Override
     public void setUp(){
-        converter = new RomanToArabicConverter();        
+        RAconverter = new RomanToArabicConverter();        
     }
     
     public void testConvert(){
-        assertEquals("15", converter.convert("XV"));
-        assertEquals("21", converter.convert("XXI"));
-        assertEquals("14", converter.convert("XIV"));
-        assertEquals("9", converter.convert("IX"));      
-        assertEquals("343", converter.convert("CCCXLIII"));
-        
-        System.out.println("lower");
-        System.out.println(ConverterUtil.ROMANS.ceilingKey(453));
-        System.out.println("higher");
-        System.out.println(ConverterUtil.ROMANS.floorKey(453));
-        
-        
-//        assertEquals("100", converter.convert("C"));
+        assertEquals("15", RAconverter.convert("XV"));
+        assertEquals("21", RAconverter.convert("XXI"));
+        assertEquals("14", RAconverter.convert("XIV"));
+        assertEquals("9", RAconverter.convert("IX"));      
+        assertEquals("343", RAconverter.convert("CCCXLIII"));
+    }
 
-//        assertEquals("Invalid numeral", converter.convert(""));
-//        assertEquals("Invalid numeral", converter.convert(" "));
-//        assertEquals("Invalid numeral", converter.convert("e"));
-//        assertEquals("Invalid numeral", converter.convert("12"));
+    public void testEmptyInput(){
+        assertEquals(EmptyInputException.ERR_MSG, RAconverter.convert("  "));
+        assertEquals(EmptyInputException.ERR_MSG, RAconverter.convert(""));
+        assertEquals("3007", RAconverter.convert("  MMMVII "));
+        assertEquals("2944", RAconverter.convert("MMCMXLIV   "));
+    }
+    
+    public void testIllegalRoman(){
+        assertEquals(IllegalRomanException.ERR_MSG, RAconverter.convert("XXXX"));
+        assertEquals(IllegalRomanException.ERR_MSG, RAconverter.convert("VV"));
+        assertEquals(IllegalRomanException.ERR_MSG, RAconverter.convert("XLXL"));
+        assertEquals(IllegalRomanException.ERR_MSG, RAconverter.convert("XCC"));
+        assertEquals(IllegalRomanException.ERR_MSG, RAconverter.convert("IVX"));
+        assertEquals("15", RAconverter.convert("xv"));
+        assertEquals("37", RAconverter.convert("xXxViI"));
+        assertEquals("3999", RAconverter.convert("MmMcmXciX"));
+    }
+    
+    public void testIllegalInput(){
+        assertEquals(IllegalInputException.ERR_MSG, RAconverter.convert("XY"));
+        assertEquals(IllegalInputException.ERR_MSG, RAconverter.convert("M CM"));
+        assertEquals(IllegalInputException.ERR_MSG, RAconverter.convert("15"));
+        assertEquals(IllegalInputException.ERR_MSG, RAconverter.convert("-X"));        
     }    
 }

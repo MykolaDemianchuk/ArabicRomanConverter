@@ -1,41 +1,57 @@
 package converter;
 
 import junit.framework.*;
-import static converter.ArabicToRomanConverter.*;
-import java.util.ArrayList;
-import java.util.List;
+import exceptions.*;
+import java.util.*;
+import util.ConverterUtil;
+import static util.ConverterUtil.*;
 
 public class ArabicToRomanConverterTest extends TestCase {
     
-    private NumeralConverter converter;
+    private NumeralConverter ARconverter;
     private NumeralConverter RAconverter;
     
     @Override
     public void setUp(){
-        converter = new ArabicToRomanConverter();     
+        ARconverter = new ArabicToRomanConverter();     
         RAconverter = new RomanToArabicConverter();
     }
     
     public void testConvert(){
+        List<String> romans = new ArrayList<>();
         
-        assertEquals("XV", converter.convert("0"));
-        assertEquals("XV", converter.convert("15"));
-        assertEquals("XXX", converter.convert("30"));        
-        assertEquals("MMXLIV", converter.convert("2044"));
-        assertEquals("MMMCMXCVIII", converter.convert("3998"));
-        
-        List<String> convertedToRoman = new ArrayList<String>();
-        for(int i = 1; i < 4000; i++){
-            convertedToRoman.add(converter.convert(String.valueOf(i)));
-            System.out.println(i + "\t\t" + convertedToRoman.get(i - 1) );
+        for(int i = MIN_VALUE; i <= MAX_VALUE; i++){
+            String arabic = String.valueOf(i);
+            romans.add(ARconverter.convert(arabic));
         }
         
-        System.out.println("list size is " + convertedToRoman.size());
+        assertTrue(MAX_VALUE == romans.size());
         
+        for(int i = MIN_VALUE; i <= MAX_VALUE; i++)
+           assertEquals(String.valueOf(i), RAconverter.convert(romans.get(i-1)));
+    }
+    
+    public void testEmptyInput(){
+        assertEquals(EmptyInputException.ERR_MSG, ARconverter.convert("  "));
+        assertEquals(EmptyInputException.ERR_MSG, ARconverter.convert(""));
+        assertEquals("MMXLVII", ARconverter.convert("   2047"));
+        assertEquals("MMXLIV", ARconverter.convert("2044   "));
         
-        for(int i = 0; i < 3999; i++){
-           assertEquals(String.valueOf(i+1), RAconverter.convert(convertedToRoman.get(i)));
-        }
-        
-    }    
+    }
+    
+    public void testIllegalArabic(){
+        assertEquals(IllegalArabicException.ERR_MSG, ARconverter.convert("0"));
+        assertEquals(IllegalArabicException.ERR_MSG, ARconverter.convert("4000"));
+        assertEquals("XV", ARconverter.convert("0015"));
+        assertEquals("MMMCMXCVIII", ARconverter.convert("3998"));
+    }
+    
+    public void testIllegalInput(){
+        assertEquals(IllegalInputException.ERR_MSG, ARconverter.convert("XV"));
+        assertEquals(IllegalInputException.ERR_MSG, ARconverter.convert("a2"));
+        assertEquals(IllegalInputException.ERR_MSG, ARconverter.convert("0.2"));
+        assertEquals(IllegalInputException.ERR_MSG, ARconverter.convert("1.3"));
+        assertEquals(IllegalInputException.ERR_MSG, ARconverter.convert("11-2"));
+        assertEquals("XXX", ARconverter.convert("  30"));      
+    }
 }
