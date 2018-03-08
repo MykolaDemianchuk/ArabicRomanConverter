@@ -42,9 +42,11 @@ public class ConverterUtil {
 
     public static int getArabicRepresentation(String roman) {
         int arabic = 0;
-        for(Map.Entry<Integer, String> entry : NUMERALS.entrySet())
-            if(entry.getValue().equals(roman))
+        for (Map.Entry<Integer, String> entry : NUMERALS.entrySet()) {
+            if (entry.getValue().equals(roman)) {
                 arabic = entry.getKey();
+            }
+        }
         return arabic;
     }
 

@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class ConverterUI extends JFrame {
+
     private JPanel jPanel1;
     private JLabel mainLabel;
     private JLabel mainLabel2;
@@ -19,7 +20,7 @@ public class ConverterUI extends JFrame {
     public ConverterUI() {
         initComponents();
     }
-    
+
     public static void main(String[] args) {
         new ConverterUI();
     }
@@ -33,7 +34,7 @@ public class ConverterUI extends JFrame {
         romanLabel = new JLabel();
         arabicTextField = new JTextField();
         romanTextField = new JTextField();
-        
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("ArabicRomanConverter");
 
@@ -45,7 +46,7 @@ public class ConverterUI extends JFrame {
                 arabicTextFieldKeyPressed(evt);
             }
         });
-        
+
         mainLabel.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
         mainLabel.setHorizontalAlignment(SwingConstants.CENTER);
         mainLabel.setText("Arabic - Roman");
@@ -125,29 +126,32 @@ public class ConverterUI extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
-    }                   
-    
-    private void arabicTextFieldKeyPressed(KeyEvent evt) {  
-        if (isEnter(evt))
-            performAction(arabicTextField, romanTextField, ARConverter);
-    }       
-    
-    private void romanTextFieldKeyPressed(KeyEvent evt) {
-        if (isEnter(evt))
-            performAction(romanTextField, arabicTextField, RAConverter);
     }
 
-    private void performAction(JTextField from, JTextField to, 
-            NumeralConverter converter){
-        
+    private void arabicTextFieldKeyPressed(KeyEvent evt) {
+        if (isEnter(evt)) {
+            performAction(arabicTextField, romanTextField, ARConverter);
+        }
+    }
+
+    private void romanTextFieldKeyPressed(KeyEvent evt) {
+        if (isEnter(evt)) {
+            performAction(romanTextField, arabicTextField, RAConverter);
+        }
+    }
+
+    private void performAction(JTextField from, JTextField to,
+            NumeralConverter converter) {
+
         String text = from.getText().trim();
-        try{
-            if (text.isEmpty()) 
+        try {
+            if (text.isEmpty()) {
                 throw new EmptyInputException();
+            }
             String result = converter.convert(text);
             to.setText(result);
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(jPanel1, e.getMessage(), 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jPanel1, e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
