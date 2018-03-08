@@ -7,14 +7,14 @@
             <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/test/converter/RomanToArabicConverterTest.java</file>
             <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/util/ConverterUtil.java</file>
             <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/test/converter/NumeralConverterTest.java</file>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/gui/ConverterApp.java</file>
-            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/gui/ConverterUI.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/ui/ConverterApp.java</file>
             <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/test/converter/ArabicToRomanConverterTest.java</file>
             <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/converter/ArabicToRomanConverter.java</file>
             <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/exceptions/IllegalArabicException.java</file>
             <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/converter/RomanToArabicConverter.java</file>
             <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/exceptions/EmptyInputException.java</file>
             <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/exceptions/IllegalInputException.java</file>
+            <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/ui/ConverterUI.java</file>
             <file>file:/C:/Users/Nick/Documents/NetBeansProjects/ArabicRomanConverter/src/exceptions/IllegalRomanException.java</file>
         </group>
     </open-files>

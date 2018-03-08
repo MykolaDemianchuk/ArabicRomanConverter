@@ -1,11 +1,12 @@
-package gui;
+package ui;
 
 import converter.*;
 import java.awt.event.KeyEvent;
+import javax.swing.*;
 
 import static util.ConverterUtil.*;
 
-public class ConverterApp extends javax.swing.JFrame {
+public class ConverterApp extends JFrame {
 
     private NumeralConverter ARConverter = new ArabicToRomanConverter();
     private NumeralConverter RAConverter = new RomanToArabicConverter();
@@ -23,15 +24,15 @@ public class ConverterApp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        arabicTextField = new javax.swing.JTextField();
-        mainLabel = new javax.swing.JLabel();
-        arabicLabel = new javax.swing.JLabel();
-        romanLabel = new javax.swing.JLabel();
-        romanTextField = new javax.swing.JTextField();
-        mainLabel2 = new javax.swing.JLabel();
+        jPanel1 = new JPanel();
+        arabicTextField = new JTextField();
+        mainLabel = new JLabel();
+        arabicLabel = new JLabel();
+        romanLabel = new JLabel();
+        romanTextField = new JTextField();
+        mainLabel2 = new JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Converter");
 
         arabicTextField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -59,7 +60,7 @@ public class ConverterApp extends javax.swing.JFrame {
         });
 
         mainLabel.setFont(new java.awt.Font("Ebrima", 1, 24)); // NOI18N
-        mainLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mainLabel.setHorizontalAlignment(SwingConstants.CENTER);
         mainLabel.setText("Arabic - Roman");
         mainLabel.setToolTipText(""); // NOI18N
 
@@ -94,59 +95,59 @@ public class ConverterApp extends javax.swing.JFrame {
         });
 
         mainLabel2.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        mainLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mainLabel2.setHorizontalAlignment(SwingConstants.CENTER);
         mainLabel2.setText("numeral converter");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(mainLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(mainLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                    .addComponent(mainLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mainLabel2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 34, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                             .addComponent(arabicLabel)
                             .addComponent(romanLabel))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(arabicTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(arabicTextField, GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                             .addComponent(romanTextField))
                         .addGap(35, 35, 35)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(mainLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mainLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(3, 3, 3)
                 .addComponent(mainLabel2)
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(arabicLabel)
-                    .addComponent(arabicTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(arabicTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(romanTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(romanTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(romanLabel))
                 .addGap(30, 30, 30))
         );
 
         arabicTextField.getAccessibleContext().setAccessibleName("");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -220,21 +221,22 @@ public class ConverterApp extends javax.swing.JFrame {
     private boolean isRoman(KeyEvent evt){
         char x = Character.toUpperCase(evt.getKeyChar());
         String s = String.valueOf(x);
-        return ROMANS.containsValue(s);
+        return true;
+//        return ROMANS.containsValue(s);
     }
     
-    private void removeLastCharacter(javax.swing.JTextField jField){
+    private void removeLastCharacter(JTextField jField){
         String text = jField.getText();  
         jField.setText(text.substring(0, text.length() - 1));
     }
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel arabicLabel;
-    private javax.swing.JTextField arabicTextField;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel mainLabel;
-    private javax.swing.JLabel mainLabel2;
-    private javax.swing.JLabel romanLabel;
-    private javax.swing.JTextField romanTextField;
+    private JLabel arabicLabel;
+    private JTextField arabicTextField;
+    private JPanel jPanel1;
+    private JLabel mainLabel;
+    private JLabel mainLabel2;
+    private JLabel romanLabel;
+    private JTextField romanTextField;
     // End of variables declaration//GEN-END:variables
 }

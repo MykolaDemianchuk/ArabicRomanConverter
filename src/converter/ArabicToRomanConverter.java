@@ -7,9 +7,6 @@ public class ArabicToRomanConverter implements NumeralConverter {
 
     @Override
     public String convert(String value) throws Exception{
-        value = value.trim();
-        if(value.isEmpty())
-            throw new EmptyInputException();
         int arabic = getValidArabic(value);
         String roman = getRoman(arabic);
         return roman;
@@ -23,16 +20,16 @@ public class ArabicToRomanConverter implements NumeralConverter {
         catch(NumberFormatException e){
             throw new IllegalInputException();
         }
-        if(arabic < MIN_VALUE || arabic  > MAX_VALUE)
+        if(isOutOfRange(arabic))
             throw new IllegalArabicException();
         return arabic;
     }
     
     private static String getRoman(int value) {
-        int closestValue = ROMANS.ceilingKey(value);
+        int closestValue = getClosestArabicTo(value);
         if (closestValue == value)
-            return ROMANS.get(value);
+            return getRomanRepresentation(value);
         int residualValue = value - closestValue;
-        return ROMANS.get(closestValue) + getRoman(residualValue);
+        return getRomanRepresentation(closestValue) + getRoman(residualValue);
     }   
 }

@@ -8,21 +8,9 @@ public class RomanToArabicConverter implements NumeralConverter {
 
     @Override
     public String convert(String value) throws Exception {
-        value = value.trim();
-        if(value.isEmpty())
-            throw new EmptyInputException();
         String roman = getValidRoman(value);
         String arabic = getArabic(roman);
         return arabic;
-    }
-
-    private static String getArabic(String value) throws Exception {
-        int arabic = 0;
-        List<String> numerals = splitRoman(value);
-        for (String numeral : numerals) {
-            arabic += ARABICS.get(numeral);
-        }
-        return String.valueOf(arabic);
     }
 
     private static String getValidRoman(String roman) throws Exception {
@@ -31,12 +19,20 @@ public class RomanToArabicConverter implements NumeralConverter {
         return validRoman;
     }
 
+    private static String getArabic(String value) throws Exception {
+        int arabic = 0;
+        List<String> romans = splitRoman(value);
+        for (String roman : romans) 
+            arabic += getArabicRepresentation(roman);
+        return String.valueOf(arabic);
+    }
+
     private static List<String> splitRoman(String roman) throws Exception {
         List<String> romans = new ArrayList<>();
         boolean found;
         while (!roman.isEmpty()) {
             found = false;
-            for (String value : ROMANS.values()) {
+            for (String value : getRomanValues()) {
                 if (roman.startsWith(value)) {
                     romans.add(value);
                     roman = roman.substring(value.length());
@@ -50,35 +46,26 @@ public class RomanToArabicConverter implements NumeralConverter {
         return romans;
     }
 
-    private static void checkPositioning(List<String> list) throws Exception {
+    private static void checkPositioning(List<String> romans) throws Exception {
         int repCount = 0;
-
-        for (int i = 0; i < list.size() - 1; i++) {
-            int value = ARABICS.get(list.get(i));
-            int nextValue = ARABICS.get(list.get(i + 1));
-
+        
+        for (int i = 0; i < romans.size() - 1; i++) {
+            String roman = romans.get(i);
+            String nextRoman = romans.get(i + 1);
+            int value = getArabicRepresentation(roman);
+            int nextValue = getArabicRepresentation(nextRoman);
+            
+            if (value == nextValue && isLegalToRepeat(value) && ++repCount < 3)
+                continue;
+            
             if (value > nextValue) {
-                if (String.valueOf(value).length() == String.valueOf(nextValue).length()
-                        && (!isFiveBased(value) || !isOneBased(nextValue))) {
+                if (isSameBase(value, nextValue) && 
+                        (!startsWithFive(value) || !startsWithOne(nextValue))) 
                     throw new IllegalRomanException();
-                }
-
                 repCount = 0;
                 continue;
             }
-            if (value == nextValue && isOneBased(value) && ++repCount < 3) {
-                continue;
-            }
-
             throw new IllegalRomanException();
         }
-    }
-
-    private static boolean isOneBased(int value) {
-        return String.valueOf(value).startsWith("1");
-    }
-
-    private static boolean isFiveBased(int value) {
-        return String.valueOf(value).startsWith("5");
     }
 }
