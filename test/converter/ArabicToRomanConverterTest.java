@@ -19,17 +19,17 @@ public class ArabicToRomanConverterTest extends TestCase {
     public void testConvert() {
         try {
             List<String> romans = new ArrayList<>();
-//
-//            for (int i = MIN_VALUE; i <= MAX_VALUE; i++) {
-//                String arabic = String.valueOf(i);
-//                romans.add(ARconverter.convert(arabic));
-//            }
-//
-//            assertTrue(MAX_VALUE == romans.size());
 
-//            for (int i = MIN_VALUE; i <= MAX_VALUE; i++) {
-//                assertEquals(String.valueOf(i), RAconverter.convert(romans.get(i - 1)));
-//            }
+            for (int i = 0; i < 3999; i++) {
+                String arabic = String.valueOf(i);
+                romans.add(ARconverter.convert(arabic));
+            }
+
+            assertTrue(3999 == romans.size());
+
+            for (int i = 1; i <= 3999; i++) {
+                assertEquals(String.valueOf(i), RAconverter.convert(romans.get(i - 1)));
+            }
         } catch (Exception e) {
             fail("Exception thrown " + e.getMessage());
         }

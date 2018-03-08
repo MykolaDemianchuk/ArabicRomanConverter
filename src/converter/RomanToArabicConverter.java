@@ -22,8 +22,9 @@ public class RomanToArabicConverter implements NumeralConverter {
     private static String getArabic(String value) throws Exception {
         int arabic = 0;
         List<String> romans = splitRoman(value);
-        for (String roman : romans) 
+        for (String roman : romans) {
             arabic += getArabicRepresentation(roman);
+        }
         return String.valueOf(arabic);
     }
 
@@ -48,20 +49,22 @@ public class RomanToArabicConverter implements NumeralConverter {
 
     private static void checkPositioning(List<String> romans) throws Exception {
         int repCount = 0;
-        
+
         for (int i = 0; i < romans.size() - 1; i++) {
             String roman = romans.get(i);
             String nextRoman = romans.get(i + 1);
             int value = getArabicRepresentation(roman);
             int nextValue = getArabicRepresentation(nextRoman);
-            
-            if (value == nextValue && isLegalToRepeat(value) && ++repCount < 3)
+
+            if (value == nextValue && isLegalToRepeat(value) && ++repCount < 3) {
                 continue;
-            
+            }
+
             if (value > nextValue) {
-                if (isSameBase(value, nextValue) && 
-                        (!startsWithFive(value) || !startsWithOne(nextValue))) 
+                if (isSameBase(value, nextValue)
+                        && (!startsWithFive(value) || !startsWithOne(nextValue))) {
                     throw new IllegalRomanException();
+                }
                 repCount = 0;
                 continue;
             }
