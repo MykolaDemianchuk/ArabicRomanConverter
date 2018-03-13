@@ -126,6 +126,9 @@ public class ConverterUI extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+        JOptionPane.showMessageDialog(jPanel1, "Application converts numerals" 
+               + " in a range from 1 to 3999",
+                    "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void arabicTextFieldKeyPressed(KeyEvent evt) {
