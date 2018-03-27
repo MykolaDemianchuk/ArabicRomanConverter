@@ -3,6 +3,8 @@ package ui;
 import converter.*;
 import exceptions.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.logging.*;
 import javax.swing.*;
 
 public class ConverterUI extends JFrame {
@@ -14,10 +16,13 @@ public class ConverterUI extends JFrame {
     private JLabel romanLabel;
     private JTextField arabicTextField;
     private JTextField romanTextField;
+    
+    private Logger logger;
+    private Handler fileHandler;
     private final NumeralConverter ARConverter = new ArabicToRomanConverter();
     private final NumeralConverter RAConverter = new RomanToArabicConverter();
 
-    public ConverterUI() {
+    private ConverterUI() {
         initComponents();
     }
 
@@ -124,11 +129,23 @@ public class ConverterUI extends JFrame {
         );
 
         pack();
+        loggingSetup();
         setLocationRelativeTo(null);
         setVisible(true);
-        JOptionPane.showMessageDialog(jPanel1, "Application converts numerals" 
-               + " in a range from 1 to 3999",
-                    "Info", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(jPanel1, "Application converts numerals"
+                + " in a range from 1 to 3999",
+                "Info", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    private void loggingSetup() {
+        logger = Logger.getLogger("Logger");
+        try {
+        fileHandler = new FileHandler("logger.log");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        fileHandler.setFormatter(new SimpleFormatter());
+        logger.addHandler(fileHandler);
     }
 
     private void arabicTextFieldKeyPressed(KeyEvent evt) {
@@ -154,6 +171,7 @@ public class ConverterUI extends JFrame {
             String result = converter.convert(text);
             to.setText(result);
         } catch (Exception e) {
+            logger.log(Level.SEVERE, e.getMessage(), e);
             JOptionPane.showMessageDialog(jPanel1, e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
